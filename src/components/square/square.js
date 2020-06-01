@@ -3,7 +3,7 @@ import classes from './square.module.css';
 
 const Square = (props) => (
     <div className={classes.Square}>
-        <p>X</p>
+        <span>{props.value}</span>
     </div>
 );
 export default Square;
