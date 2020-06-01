@@ -1,0 +1,2 @@
+export const MARK_POSITION = 'MARK_POSITION';
+export const TOGGLE_PLAYER = 'TOGGLE_PLAYER';

@@ -5,9 +5,9 @@ import classes from './squares.module.css';
 
 const Squares = (props) => (
     <div className={classes.Squares}>
-        <Square value={props.row} />
-        <Square value={props.row + 1} />
-        <Square value={props.row + 2} />
+        <Square value={props.row} markPosition={props.onMarkPosition}/>
+        <Square value={props.row + 1} markPosition={props.onMarkPosition}/>
+        <Square value={props.row + 2} markPosition={props.onMarkPosition}/>
     </div>
 );
 export default Squares;
