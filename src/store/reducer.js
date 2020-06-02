@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes';
 
 const initialState = {
-    player: 'X',
+    result: false,
     squares: {
         square1: '',
         square2: '',
@@ -27,10 +27,10 @@ const reducer = (state = initialState, action) => {
                 },
             };
         }
-        case actionTypes.TOGGLE_PLAYER: {
+        case actionTypes.CHECK_RESULT: {
             return {
                 ...state,
-                player: action.player,
+                player: action.result,
             };
         }
         default:

@@ -6,25 +6,46 @@ import Squares from './components/Squares/squares';
 import * as actionTypes from './store/actionTypes';
 
 class App extends Component {
-    componentDidMount() {
-        this.ruleSet = [
-            [1, 2, 3],
-            [4, 5, 6],
-            [7, 8, 9],
-            [1, 4, 7],
-            [2, 5, 8],
-            [3, 6, 9],
-            [1, 5, 9],
-            [3, 5, 7],
-        ];
+    ruleSet = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+        [1, 4, 7],
+        [2, 5, 8],
+        [3, 6, 9],
+        [1, 5, 9],
+        [3, 5, 7],
+    ];
+    squareStates = { ...this.props.squares };
+    player = 'X';
+    componentDidUpdate() {
+        if (!this.result) {
+            this.player = this.player === 'X' ? 'O' : 'X';
+        }
     }
+    checkWinnerHandler = () => {
+        for (let [a, b, c] of this.ruleSet) {
+            if (
+                this.squareStates[`square${a}`] &&
+                this.squareStates[`square${a}`] ===
+                    this.squareStates[`square${b}`] &&
+                this.squareStates[`square${b}`] ===
+                    this.squareStates[`square${c}`]
+            ) {
+                return this.player;
+            }
+        }
+        return false;
+    };
     markPositionHandler = (position) => {
-        this.props.markPosition(position, this.props.player);
-        this.props.togglePlayer(this.props.player === 'X' ? 'O' : 'X');
+        this.squareStates[position] = this.player;
+        this.winner = this.checkWinnerHandler();
+        this.props.markPosition(position, this.player);
     };
     render() {
         return (
             <div className={classes.App}>
+                {this.winner}
                 <div>
                     <Squares
                         row={1}
@@ -47,6 +68,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
     return {
         player: state.player,
+        squares: state.squares,
     };
 };
 
@@ -58,8 +80,8 @@ const mapDispatchToProps = (dispatch) => {
                 position: position,
                 player: playerType,
             }),
-        togglePlayer: (playerType) =>
-            dispatch({ type: actionTypes.TOGGLE_PLAYER, player: playerType }),
+        checkResult: (result) =>
+            dispatch({ type: actionTypes.CHECK_RESULT, result: result }),
     };
 };
 
