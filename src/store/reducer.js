@@ -27,12 +27,6 @@ const reducer = (state = initialState, action) => {
                 },
             };
         }
-        case actionTypes.CHECK_RESULT: {
-            return {
-                ...state,
-                player: action.result,
-            };
-        }
         default:
             return state;
     }

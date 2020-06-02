@@ -18,11 +18,20 @@ class App extends Component {
     ];
     squareStates = { ...this.props.squares };
     player = 'X';
+    gameOver = false;
     componentDidUpdate() {
-        if (!this.result) {
+        if (!this.result && !this.gameOver) {
             this.player = this.player === 'X' ? 'O' : 'X';
         }
     }
+    checkGameStatus = () => {
+        for (let square in this.squareStates) {
+            if (this.squareStates[square] === '') {
+                return false;
+            }
+        }
+        return true;
+    };
     checkWinnerHandler = () => {
         for (let [a, b, c] of this.ruleSet) {
             if (
@@ -32,9 +41,11 @@ class App extends Component {
                 this.squareStates[`square${b}`] ===
                     this.squareStates[`square${c}`]
             ) {
+                this.gameOver = true;
                 return this.player;
             }
         }
+        this.gameOver = this.checkGameStatus();
         return false;
     };
     markPositionHandler = (position) => {
@@ -45,7 +56,8 @@ class App extends Component {
     render() {
         return (
             <div className={classes.App}>
-                {this.winner}
+                {this.winner ? `winner is ${this.winner}` : ''}
+                {this.gameOver ? 'game over' : ''}
                 <div>
                     <Squares
                         row={1}
@@ -67,7 +79,6 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        player: state.player,
         squares: state.squares,
     };
 };
@@ -80,8 +91,6 @@ const mapDispatchToProps = (dispatch) => {
                 position: position,
                 player: playerType,
             }),
-        checkResult: (result) =>
-            dispatch({ type: actionTypes.CHECK_RESULT, result: result }),
     };
 };
 

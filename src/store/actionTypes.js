@@ -1,2 +1,1 @@
 export const MARK_POSITION = 'MARK_POSITION';
-export const CHECK_RESULT = 'CHECK_RESULT';
