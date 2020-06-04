@@ -4,21 +4,26 @@ import { connect } from 'react-redux';
 import classes from './App.module.css';
 import Squares from './components/Squares/squares';
 import * as actionTypes from './store/actionTypes';
+import Backdrop from './components/UI/Backdrop/Backdrop';
+import Modal from './components/UI/Modal/Modal';
 
 class App extends Component {
-    ruleSet = [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9],
-        [1, 4, 7],
-        [2, 5, 8],
-        [3, 6, 9],
-        [1, 5, 9],
-        [3, 5, 7],
-    ];
-    squareStates = { ...this.props.squares };
-    player = 'X';
-    gameOver = false;
+    constructor(props) {
+        super(props);
+        this.ruleSet = [
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9],
+            [1, 4, 7],
+            [2, 5, 8],
+            [3, 6, 9],
+            [1, 5, 9],
+            [3, 5, 7],
+        ];
+        this.squareStates = { ...this.props.squares };
+        this.player = 'X';
+        this.gameOver = false;
+    }
     componentDidUpdate() {
         if (!this.result && !this.gameOver) {
             this.player = this.player === 'X' ? 'O' : 'X';
@@ -49,13 +54,17 @@ class App extends Component {
         return false;
     };
     markPositionHandler = (position) => {
-        this.squareStates[position] = this.player;
-        this.winner = this.checkWinnerHandler();
-        this.props.markPosition(position, this.player);
+        if (!this.squareStates[position]) {
+            this.squareStates[position] = this.player;
+            this.winner = this.checkWinnerHandler();
+            this.props.markPosition(position, this.player);
+        }
     };
     render() {
         return (
             <div className={classes.App}>
+                {/* <Backdrop /> */}
+                <Modal />
                 {this.winner ? `winner is ${this.winner}` : ''}
                 {this.gameOver ? 'game over' : ''}
                 <div>

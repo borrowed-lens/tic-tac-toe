@@ -11,6 +11,14 @@
     cursor: pointer;
 }
 
+.SquareX {
+    background-color: #9fd4ff;
+}
+
+.SquareO {
+    background-color: #fdea93;
+}
+
 .SquareValueEnter {
     opacity: 0;
 }

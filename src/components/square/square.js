@@ -7,21 +7,32 @@ import classes from './square.module.css';
 const Square = (props) => {
     let inProp = Boolean(props.squares[`square${props.value}`]);
     let nodeRef = useRef(null);
+    let squareClasses = [
+        classes.Square,
+        props.squares[`square${props.value}`] === 'X'
+            ? classes.SquareX
+            : props.squares[`square${props.value}`] === 'O'
+            ? classes.SquareO
+            : null,
+    ];
     return (
-        <div
-            className={classes.Square}
-            onClick={() => props.markPosition(`square${props.value}`)}>
-            <CSSTransition
-                in={inProp}
-                timeout={300}
-                classNames={{
-                    enter: classes.SquareValueEnter,
-                    enterActive: classes.SquareValueEnterActive,
-                }}
-                nodeRef={nodeRef}>
-                <span ref={nodeRef}>{props.squares[`square${props.value}`]}</span>
-            </CSSTransition>
-        </div>
+        <CSSTransition
+            in={inProp}
+            timeout={300}
+            classNames={{
+                enter: classes.SquareValueEnter,
+                enterActive: classes.SquareValueEnterActive,
+            }}
+            nodeRef={nodeRef}>
+            <div
+                ref={nodeRef}
+                className={squareClasses.join(' ')}
+                onClick={() => props.markPosition(`square${props.value}`)}>
+                <span className={classes.SquareSpan}>
+                    {props.squares[`square${props.value}`]}
+                </span>
+            </div>
+        </CSSTransition>
     );
 };
 
