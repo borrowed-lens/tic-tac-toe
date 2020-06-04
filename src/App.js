@@ -74,7 +74,7 @@ class App extends Component {
     render() {
         return (
             <div className={classes.App}>
-                {/* <Backdrop /> */}
+                {this.state.gameOver? <Backdrop close={this.closeModal}></Backdrop>: null}
                 <Modal
                     winner={this.winner}
                     showModal={this.state.gameOver}
