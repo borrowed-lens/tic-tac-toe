@@ -1,44 +1,78 @@
 .App {
-  position: relative;
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+    position: relative;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Poppins';
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.SquareContainer {
+    height: 400px;
+    width: 400px;
+    border: 1px solid black;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.LeftDiv {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #4aaeff;
+    transition: all 0.5s ease-out;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.LeftDivActive {
+    transform: translateX(-100%);
 }
 
-.App-link {
-  color: #61dafb;
+.RightDiv {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #296392;
+    transition: all 0.5s ease-out;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.RightDivActive {
+    transform: translateX(100%);
 }
+
+.PrimaryButton {
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+    color: #4aaeff;
+    border: 1px solid #4aaeff;
+    font-family: 'Poppins';
+    font-size: 14px;
+    border-radius: 5px;
+    opacity: 1;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+}
+
+.PrimaryButtonActive {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+.PrimaryButton:hover {
+    color: #296392;
+    border: 1px solid #296392;
+}
+
+.PrimaryButton:focus {
+    outline: none;
+}
+
