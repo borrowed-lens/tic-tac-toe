@@ -25,8 +25,6 @@ class App extends Component {
             [1, 5, 9],
             [3, 5, 7],
         ];
-        this.squareStates = { ...this.props.squares };
-        this.player = 'X';
         this.buttonRef = createRef();
         this.leftRef = createRef();
         this.rightRef = createRef();
@@ -61,6 +59,8 @@ class App extends Component {
         return false;
     };
     startGameHandler = () => {
+        this.player = 'X';
+        this.squareStates = { ...this.props.squares };
         this.setState({
             gameStart: true,
         });
@@ -81,6 +81,7 @@ class App extends Component {
             gameStart: false,
         });
         this.props.restartGame();
+        console.log("App -> constructor -> this.squareStates", this.squareStates)
     };
     render() {
         return (
