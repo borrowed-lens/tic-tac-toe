@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import Square from '../Square/square';
 import classes from './squares.module.css';
@@ -10,4 +10,4 @@ const Squares = (props) => (
         <Square value={props.row + 2} markPosition={props.onMarkPosition}/>
     </div>
 );
-export default Squares;
+export default memo(Squares);

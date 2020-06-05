@@ -17,7 +17,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.MARK_POSITION: {
+        case actionTypes.MARK_POSITION:
             return {
                 ...state,
                 player: action.player,
@@ -26,7 +26,11 @@ const reducer = (state = initialState, action) => {
                     [action.position]: action.player,
                 },
             };
-        }
+        case actionTypes.RESTART:
+            return {
+                ...initialState,
+            };
+
         default:
             return state;
     }

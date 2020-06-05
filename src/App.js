@@ -80,6 +80,7 @@ class App extends Component {
             gameOver: false,
             gameStart: false,
         });
+        this.props.restartGame();
     };
     render() {
         return (
@@ -175,6 +176,11 @@ const mapDispatchToProps = (dispatch) => {
                 position: position,
                 player: playerType,
             }),
+        restartGame: () => {
+            dispatch({
+                type: actionTypes.RESTART
+            })
+        }
     };
 };
 
