@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 
@@ -11,6 +11,10 @@ import Modal from './components/UI/Modal/Modal';
 class App extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            gameStart: false,
+            gameOver: false,
+        };
         this.ruleSet = [
             [1, 2, 3],
             [4, 5, 6],
@@ -23,10 +27,10 @@ class App extends Component {
         ];
         this.squareStates = { ...this.props.squares };
         this.player = 'X';
-        this.state = {
-            gameStart: false,
-            gameOver: false,
-        };
+        this.buttonRef = createRef();
+        this.leftRef = createRef();
+        this.rightRef = createRef();
+        this.modalRef = createRef();
     }
     checkGameStatus = () => {
         for (let square in this.squareStates) {
@@ -85,26 +89,26 @@ class App extends Component {
                 ) : null}
                 <CSSTransition
                     in={this.state.gameOver}
-                    timeout={10000}
+                    timeout={500}
                     mountOnEnter
                     unmountOnExit
                     classNames={{
                         enterActive: classes.ModalEnterActive,
                         exitActive: classes.ModalExitActive,
                     }}>
-                    <Modal
-                        winner={this.winner}
-                        close={this.closeModal}></Modal>
+                    <Modal winner={this.winner} close={this.closeModal}></Modal>
                 </CSSTransition>
                 <CSSTransition
                     in={!this.state.gameStart}
                     timeout={500}
                     unmountOnExit
+                    nodeRef={this.buttonRef}
                     classNames={{
                         exit: classes.PrimaryButton,
                         exitActive: classes.PrimaryButtonActive,
                     }}>
                     <button
+                        ref={this.buttonRef}
                         className={classes.PrimaryButton}
                         onClick={this.startGameHandler}>
                         start the game
@@ -115,21 +119,27 @@ class App extends Component {
                         in={!this.state.gameStart}
                         timeout={500}
                         unmountOnExit
+                        nodeRef={this.leftRef}
                         classNames={{
                             exit: classes.LeftDiv,
                             exitActive: classes.LeftDivActive,
                         }}>
-                        <div className={classes.LeftDiv}></div>
+                        <div
+                            className={classes.LeftDiv}
+                            ref={this.leftRef}></div>
                     </CSSTransition>
                     <CSSTransition
                         in={!this.state.gameStart}
                         timeout={500}
                         unmountOnExit
+                        nodeRef={this.rightRef}
                         classNames={{
                             exit: classes.RightDiv,
                             exitActive: classes.RightDivActive,
                         }}>
-                        <div className={classes.RightDiv}></div>
+                        <div
+                            className={classes.RightDiv}
+                            ref={this.rightRef}></div>
                     </CSSTransition>
                     <div>
                         <Squares
