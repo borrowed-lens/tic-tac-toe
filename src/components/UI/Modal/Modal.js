@@ -12,9 +12,15 @@ const Modal = (props) => {
                     ? { backgroundColor: '#9fd4ff' }
                     : props.winner === 'O'
                     ? { backgroundColor: '#fdea93' }
+                    : !props.winner
+                    ? { backgroundColor: '#ffffff' }
                     : null
             }>
-            <div>winner is {props.winner}</div>
+            {props.winner ? (
+                <div>winner is {props.winner}</div>
+            ) : (
+                <div>game is a draw</div>
+            )}
         </div>
     );
 };
