@@ -76,3 +76,39 @@
     outline: none;
 }
 
+.ModalEnterActive {
+    animation: modalEnter 0.5s forwards;
+}
+
+.ModalExitActive {
+    animation: modalExit 0.5s forwards;
+}
+
+@keyframes modalEnter {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%)
+    }
+    70% {
+        opacity: 1;
+        transform: translateY(50%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes modalExit {
+    0% {
+        opacity: 1;
+        transform: translateY(0)
+    }
+    30% {
+        opacity: 1;
+        transform: translateY(50%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+}

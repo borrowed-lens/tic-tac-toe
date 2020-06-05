@@ -71,21 +71,38 @@ class App extends Component {
             }
         }
     };
+    closeModal = () => {
+        this.setState({
+            gameOver: false,
+            gameStart: false,
+        });
+    };
     render() {
         return (
             <div className={classes.App}>
-                {this.state.gameOver? <Backdrop close={this.closeModal}></Backdrop>: null}
-                <Modal
-                    winner={this.winner}
-                    showModal={this.state.gameOver}
-                    close={this.closeModal}></Modal>
+                {this.state.gameOver ? (
+                    <Backdrop close={this.closeModal}></Backdrop>
+                ) : null}
                 <CSSTransition
-                    in={this.state.gameStart}
-                    timeout={500}
+                    in={this.state.gameOver}
+                    timeout={10000}
+                    mountOnEnter
+                    unmountOnExit
                     classNames={{
-                        enter: classes.PrimaryButton,
-                        enterActive: classes.PrimaryButtonActive,
-                        enterDone: classes.PrimaryButtonActive,
+                        enterActive: classes.ModalEnterActive,
+                        exitActive: classes.ModalExitActive,
+                    }}>
+                    <Modal
+                        winner={this.winner}
+                        close={this.closeModal}></Modal>
+                </CSSTransition>
+                <CSSTransition
+                    in={!this.state.gameStart}
+                    timeout={500}
+                    unmountOnExit
+                    classNames={{
+                        exit: classes.PrimaryButton,
+                        exitActive: classes.PrimaryButtonActive,
                     }}>
                     <button
                         className={classes.PrimaryButton}
@@ -93,24 +110,24 @@ class App extends Component {
                         start the game
                     </button>
                 </CSSTransition>
-                {this.winner ? `winner is ${this.winner}` : ''}
-                {this.state.gameOver ? 'game over' : ''}
                 <div className={classes.SquareContainer}>
                     <CSSTransition
-                        in={this.state.gameStart}
+                        in={!this.state.gameStart}
                         timeout={500}
+                        unmountOnExit
                         classNames={{
-                            enter: classes.LeftDiv,
-                            enterActive: classes.LeftDivActive,
+                            exit: classes.LeftDiv,
+                            exitActive: classes.LeftDivActive,
                         }}>
                         <div className={classes.LeftDiv}></div>
                     </CSSTransition>
                     <CSSTransition
-                        in={this.state.gameStart}
+                        in={!this.state.gameStart}
                         timeout={500}
+                        unmountOnExit
                         classNames={{
-                            enter: classes.RightDiv,
-                            enterActive: classes.RightDivActive,
+                            exit: classes.RightDiv,
+                            exitActive: classes.RightDivActive,
                         }}>
                         <div className={classes.RightDiv}></div>
                     </CSSTransition>
