@@ -68,7 +68,8 @@
 }
 
 .PrimaryButton:hover {
-    color: #296392;
+    color: #fff;
+    background-color: #296392;
     border: 1px solid #296392;
 }
 

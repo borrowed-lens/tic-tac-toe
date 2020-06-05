@@ -81,7 +81,6 @@ class App extends Component {
             gameStart: false,
         });
         this.props.restartGame();
-        console.log("App -> constructor -> this.squareStates", this.squareStates)
     };
     render() {
         return (
