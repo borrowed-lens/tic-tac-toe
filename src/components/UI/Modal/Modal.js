@@ -11,7 +11,7 @@ const Modal = (props) => {
                 props.winner === 'X'
                     ? { backgroundColor: '#9fd4ff' }
                     : props.winner === 'O'
-                    ? { backgroundColor: '#fdea93' }
+                    ? { backgroundColor: '#296392' }
                     : !props.winner
                     ? { backgroundColor: '#ffffff' }
                     : null

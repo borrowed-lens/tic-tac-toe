@@ -10,6 +10,7 @@ import Modal from './components/UI/Modal/Modal';
 
 class App extends Component {
     constructor(props) {
+        console.log("App", App)
         super(props);
         this.state = {
             gameStart: false,
