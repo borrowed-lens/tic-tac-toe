@@ -1,18 +1,17 @@
 .App {
-    position: relative;
-    z-index: 100;
     display: flex;
-    background-color: #fdea93;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    overflow: hidden;
+    justify-content: center;
+    z-index: 100;
+    background-color: #fdea93;
     height: 100vh;
     font-family: 'Poppins';
 }
 
 .SquareContainer {
-    height: 400px;
-    width: 400px;
+    padding: 10%;
     border: 1px solid black;
     position: relative;
     display: flex;
