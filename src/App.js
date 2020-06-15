@@ -25,7 +25,8 @@ class App extends Component {
             [1, 5, 9],
             [3, 5, 7],
         ];
-        this.buttonRef = createRef();
+        this.startBtnRef = createRef();
+        this.restartBtnRef = createRef();
         this.leftRef = createRef();
         this.rightRef = createRef();
         this.modalRef = createRef();
@@ -75,7 +76,7 @@ class App extends Component {
             }
         }
     };
-    closeModal = () => {
+    endGame = () => {
         this.setState({
             gameOver: false,
             gameStart: false,
@@ -86,7 +87,7 @@ class App extends Component {
         return (
             <div className={classes.App}>
                 {this.state.gameOver ? (
-                    <Backdrop close={this.closeModal}></Backdrop>
+                    <Backdrop close={this.endGame}></Backdrop>
                 ) : null}
                 <CSSTransition
                     in={this.state.gameOver}
@@ -97,24 +98,42 @@ class App extends Component {
                         enterActive: classes.ModalEnterActive,
                         exitActive: classes.ModalExitActive,
                     }}>
-                    <Modal winner={this.winner} close={this.closeModal}></Modal>
+                    <Modal winner={this.winner} close={this.endGame}></Modal>
                 </CSSTransition>
-                <CSSTransition
-                    in={!this.state.gameStart}
-                    timeout={500}
-                    unmountOnExit
-                    nodeRef={this.buttonRef}
-                    classNames={{
-                        exit: classes.PrimaryButton,
-                        exitActive: classes.PrimaryButtonActive,
-                    }}>
-                    <button
-                        ref={this.buttonRef}
-                        className={classes.PrimaryButton}
-                        onClick={this.startGameHandler}>
-                        start the game
-                    </button>
-                </CSSTransition>
+                <span className={classes.ButtonHolderSpan}>
+                    <CSSTransition
+                        in={!this.state.gameStart}
+                        timeout={500}
+                        unmountOnExit
+                        nodeRef={this.startBtnRef}
+                        classNames={{
+                            exit: classes.PrimaryButton,
+                            exitActive: classes.PrimaryButtonActive,
+                        }}>
+                        <button
+                            ref={this.startBtnRef}
+                            className={classes.PrimaryButton}
+                            onClick={this.startGameHandler}>
+                            start the game
+                        </button>
+                    </CSSTransition>
+                    <CSSTransition
+                        in={this.state.gameStart}
+                        timeout={500}
+                        mountOnEnter
+                        unmountOnExit
+                        nodeRef={this.restartBtnRef}
+                        classNames={{
+                            enterDone: classes.RestartButtonActive,
+                        }}>
+                        <button
+                            ref={this.restartBtnRef}
+                            className={classes.RestartButton}
+                            onClick={this.endGame}>
+                            restart
+                        </button>
+                    </CSSTransition>
+                </span>
                 <div className={classes.SquareContainer}>
                     <CSSTransition
                         in={!this.state.gameStart}
@@ -178,9 +197,9 @@ const mapDispatchToProps = (dispatch) => {
             }),
         restartGame: () => {
             dispatch({
-                type: actionTypes.RESTART
-            })
-        }
+                type: actionTypes.RESTART,
+            });
+        },
     };
 };
 
