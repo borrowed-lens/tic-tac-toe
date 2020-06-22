@@ -52,7 +52,6 @@
 .ButtonHolderSpan {
     display: flex;
     justify-content: center;
-    width: 500px;
 }
 
 .PrimaryButton {
@@ -67,6 +66,7 @@
     border-radius: 5px;
     opacity: 1;
     cursor: pointer;
+    transform: translateX(0);
     transition: all 0.5s ease-out;
 }
 

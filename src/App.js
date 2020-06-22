@@ -102,22 +102,6 @@ class App extends Component {
                 </CSSTransition>
                 <span className={classes.ButtonHolderSpan}>
                     <CSSTransition
-                        in={!this.state.gameStart}
-                        timeout={500}
-                        unmountOnExit
-                        nodeRef={this.startBtnRef}
-                        classNames={{
-                            exit: classes.PrimaryButton,
-                            exitActive: classes.PrimaryButtonActive,
-                        }}>
-                        <button
-                            ref={this.startBtnRef}
-                            className={classes.PrimaryButton}
-                            onClick={this.startGameHandler}>
-                            start the game
-                        </button>
-                    </CSSTransition>
-                    <CSSTransition
                         in={this.state.gameStart}
                         timeout={500}
                         mountOnEnter
@@ -131,6 +115,24 @@ class App extends Component {
                             className={classes.RestartButton}
                             onClick={this.endGame}>
                             restart
+                        </button>
+                    </CSSTransition>
+                    <CSSTransition
+                        in={!this.state.gameStart}
+                        timeout={500}
+                        mountOnEnter
+                        unmountOnExit
+                        nodeRef={this.startBtnRef}
+                        classNames={{
+                            enter: classes.PrimaryButtonActive,
+                            exitActive: classes.PrimaryButtonActive,
+                            exitDone: classes.PrimaryButtonActive
+                        }}>
+                        <button
+                            ref={this.startBtnRef}
+                            className={classes.PrimaryButton}
+                            onClick={this.startGameHandler}>
+                            start the game
                         </button>
                     </CSSTransition>
                 </span>
