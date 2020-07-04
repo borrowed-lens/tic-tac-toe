@@ -83,6 +83,9 @@
 
 .PrimaryButton:focus {
     outline: none;
+    color: #fff;
+    background-color: #296392;
+    border: 1px solid #296392;
 }
 .RestartButton {
     display: inline;

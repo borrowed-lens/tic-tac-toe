@@ -24,14 +24,14 @@ const Square = (props) => {
                 enterActive: classes.SquareValueEnterActive,
             }}
             nodeRef={nodeRef}>
-            <div
+            <button
                 ref={nodeRef}
                 className={squareClasses.join(' ')}
                 onClick={() => props.markPosition(`square${props.value}`)}>
                 <span className={classes.SquareSpan}>
                     {props.squares[`square${props.value}`]}
                 </span>
-            </div>
+            </button>
         </CSSTransition>
     );
 };
