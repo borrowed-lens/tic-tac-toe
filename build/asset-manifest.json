@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.7a3ac8cb.chunk.css",
+    "main.css": "/static/css/main.67fe27c9.chunk.css",
     "main.js": "/static/js/main.99966899.chunk.js",
     "main.js.map": "/static/js/main.99966899.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.c0ef1627.js",
@@ -8,15 +8,16 @@
     "static/js/2.8be531b0.chunk.js": "/static/js/2.8be531b0.chunk.js",
     "static/js/2.8be531b0.chunk.js.map": "/static/js/2.8be531b0.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.e8404e08ccbc91ff9953b171701f10ee.js": "/precache-manifest.e8404e08ccbc91ff9953b171701f10ee.js",
+    "precache-manifest.3d6cf8f3bfb1166583e10835d7646094.js": "/precache-manifest.3d6cf8f3bfb1166583e10835d7646094.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.7a3ac8cb.chunk.css.map": "/static/css/main.7a3ac8cb.chunk.css.map",
-    "static/js/2.8be531b0.chunk.js.LICENSE.txt": "/static/js/2.8be531b0.chunk.js.LICENSE.txt"
+    "static/css/main.67fe27c9.chunk.css.map": "/static/css/main.67fe27c9.chunk.css.map",
+    "static/js/2.8be531b0.chunk.js.LICENSE.txt": "/static/js/2.8be531b0.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/Poppins-Light.2a47a29c.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.c0ef1627.js",
     "static/js/2.8be531b0.chunk.js",
-    "static/css/main.7a3ac8cb.chunk.css",
+    "static/css/main.67fe27c9.chunk.css",
     "static/js/main.99966899.chunk.js"
   ]
 }
